@@ -1,0 +1,38 @@
+img{
+  margin:0;
+  padding:0;
+  background-size: cover;
+  position: relative;
+}
+
+.logo2{
+  width:80px;
+  position:absolute;
+
+  .logo2--first{
+    bottom:600px;
+    left:1100px;
+  }
+  .logo2--second{
+    bottom:400px;
+    left:950px;
+  }
+  .logo2--third{
+    bottom:400px;
+    left:360px;
+  }
+  .logo2--fourth{
+    bottom:500px;
+    left:670px;
+  }
+}
+
+button{
+  background-color: transparent;
+  border: transparent;
+}
+
+.map{
+  z-index: -1;
+
+}

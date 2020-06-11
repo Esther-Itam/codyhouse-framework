@@ -1,0 +1,118 @@
+/* -------------------------------- 
+
+File#: _1_main-footer
+Title: Main Footer
+Descr: Footer navigation
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.main-footer {
+    position: relative;
+    z-index: 1;
+    background-color: var(--color-primary);
+    position: static;
+    margin-bottom: 0;
+
+  }
+  
+  .main-footer__logo {
+    flex-shrink: 0;
+    width: 104px; // logo width
+    height: 30px; // logo height
+    
+  
+    svg, img {
+      width: 300px;
+      height: 300px;
+      display: flex;
+      justify-content: center;
+    }
+  }
+  
+  .main-footer__item {
+    margin-top: var(--space-xs);
+  }
+  
+  .main-footer__link {
+    color: var(--color-contrast-medium);
+    text-decoration: none;
+  
+    &:hover {
+      color: var(--color-contrast-high);
+    }
+  }
+  
+  // colophon
+  .main-footer__colophon {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .main-footer__social {
+    text-decoration: none;
+    display: inline-block;
+    color: var(--color-contrast-medium);
+  
+    &:hover {
+      color: var(--color-contrast-high);
+    }
+  }
+  
+  @include breakpoint(md) {
+    .main-footer__legend {
+      font-size: var(--text-base);
+    }
+    
+    .main-footer__item {
+      font-size: 0.9em;
+    }
+  }
+
+  nav{
+    margin-left: 100px;
+  }
+
+  /* -------------------------------- 
+
+File#: _1_socials
+Title: Socials
+Descr: Section with links to social media accounts
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+.socials__btns {
+  li {
+    display: inline-block; // flex fallback
+  }
+
+  a {
+    width: 2.5em;
+    height: 2.5em;
+    border-radius: 50%;
+    display: block; // flex fallback
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: white;
+    color: black;
+    transition: background-color .2s, color .2s;
+
+    &:hover {
+      background-color: var(--color-primary);
+      color: var(--color-white);
+
+      .icon {
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  .icon {
+    font-size: 1.25em; // icon size
+    transition: transform .2s var(--ease-out);
+  }
+}

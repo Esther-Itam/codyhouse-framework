@@ -1,0 +1,19 @@
+// 👇 optional -> set custom breakpoints
+// $breakpoints: (
+//   xs: 32rem,
+//   sm: 48rem,
+//   md: 64rem,
+//   lg: 80rem,
+//   xl: 90rem
+// );
+
+@import 'base';
+@import 'custom-style';
+@import 'main-header';
+@import 'main-footer';
+@import 'newsletter';
+@import '_hero.scss';
+@import '_map.scss';
+@import '_nav.scss';
+@import '_modal.scss';
+@import '_filter.scss';

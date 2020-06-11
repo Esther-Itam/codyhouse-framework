@@ -1,0 +1,400 @@
+/* -------------------------------- 
+
+File#: _1_header
+Title: Main Header
+Descr: Accessible website navigation
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+:root {
+    --header-height: 50px;
+  
+    @include breakpoint(md) {
+      --header-height: 70px;
+    }
+  }
+  
+  .header {
+    height: var(--header-height);
+    width: 100%;
+    background-color: var(--color-bg);
+    opacity:.6;
+    z-index: var(--zindex-header);
+    margin: 0 auto;
+  }
+  
+  .header--expanded {
+    // class added when navigation is visible - small devices only
+  }
+  
+  .header__container {
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  
+  // logo
+  .header__logo {
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+
+    img{
+      width: 70px;
+    }
+  
+    a, svg, img {
+      display: block;
+    }
+  }
+  
+  // nav
+  .header__nav {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-height: 100vh;
+    background-color: var(--color-bg);
+    box-shadow: var(--shadow-md);
+    overflow: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    font-size: 1.25em; // controls the font-size of all elements (sm)
+  
+    display: none;
+  
+    &::before { // top header bg + border
+      content: '';
+      display: block;
+      position: sticky;
+      top: 0;
+      height: var(--header-height);
+      background: inherit;
+      border-bottom: 1px solid var(--color-contrast-low);
+    }
+  }
+  
+  .header__nav--is-visible {
+    display: block;
+  }
+  
+  .header__nav-inner {
+    padding: var(--space-sm) var(--component-padding) var(--component-padding);
+  }
+  
+  .header__label { // menu label
+    font-size: var(--text-sm);
+    color: var(--color-contrast-medium);
+    margin-bottom: var(--space-sm);
+  }
+  
+  .header__item { // nav list item
+    margin-bottom: var(--space-sm);
+
+  }
+  .btn--nav{
+    box-shadow: 5px 5px 5px black;
+    background-color: royalblue;
+    color: white;
+    margin-left: 50px;
+    margin-right: 30px;
+  }
+
+  
+  .header__link { // link within list item
+    color: blue;
+    text-decoration: none;
+    font-size: 17px;
+  
+    &:hover, &[aria-current] { // style of :hover + selected link
+      color: black;
+    }
+  }
+  
+  .header__item--divider { // element used to separate nav items
+    height: 1px;
+    width: 100%;
+    background-color: black;
+  }
+  
+  // menu trigger
+  .header__trigger { // menu button
+    position: relative;
+    z-index: 2;
+  }
+  
+  // menu icon
+  .header__trigger-icon {
+    position: relative;
+    display: block;
+    height: 2px;
+    width: 1em;
+    background-color: currentColor;
+    margin-right: var(--space-xxs);
+    transition: 0.2s;
+  
+    &::before, &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: inherit;
+      height: inherit;
+      background-color: currentColor;
+      transition: 0.2s;
+    }
+  
+    &::before {
+      transform: translateY(-5px);
+    }
+  
+    &::after {
+      transform: translateY(5px);
+    }
+  }
+  
+  .header__trigger[aria-expanded="true"] .header__trigger-icon {
+    background-color: transparent;
+  
+    &::before {
+      transform: rotate(45deg);
+    }
+  
+    &::after {
+      transform: rotate(-45deg);
+    }
+  }
+  
+  @include breakpoint(md) {
+    .header__nav {
+      // reset
+      position: static;
+      background-color: transparent;
+      width: auto;
+      max-height: none;
+      box-shadow: none;
+      overflow: visible;
+      overscroll-behavior: auto;
+      display: block;
+  
+      font-size: 0.875em; // controls the font-size of all elements (md)
+  
+      &::before {
+        display: none;
+      }
+    }
+  
+    .header__nav-inner {
+      padding: 0; // reset
+    }
+  
+    .header__label { // hide label
+      @include srHide;
+    }
+  
+   .header__list{
+     margin-left: -70px;
+     margin-right: 10px;
+   }
+  
+    .header__item {
+      display: inline-block; // flex fallback
+      margin-bottom: 0;
+      margin-left: var(--space-md);
+    }
+  
+    .header__item--divider {
+      height: 1em;
+      width: 1px;
+    }
+  
+    .header__trigger {
+      display: none;
+    }
+  }
+  
+  // no JS fallback
+  html:not(.js) {
+    .header {
+      height: auto;
+      padding-top: var(--space-xs);
+    }
+  
+    .header__trigger {
+      display: none;
+    }
+  
+    .header__container {
+      display: block;
+    }
+  
+    .header__nav {
+      position: static;
+      height: auto;
+      padding: 0;
+      box-shadow: none;
+      overflow: visible;
+      display: block;
+  
+      &::before {
+        display: none;
+      }
+    }
+  
+    .header__nav-inner { 
+      position: static;
+      height: auto;
+      padding: var(--space-md) 0;
+      overflow: visible;
+    }
+  
+    @include breakpoint(md) {
+      .header {
+        height: var(--header-height);
+        padding: 0;
+      }
+  
+      .header__container {
+        display: flex;
+      }
+    }
+  }
+  /* -------------------------------- 
+
+File#: _1_avatar
+Title: Avatar
+Descr: A user profile image component
+Usage: codyhouse.co/license
+
+-------------------------------- */
+
+:root {
+    --avatar-sm: 1em;
+    --avatar-md: 2em;
+    --avatar-lg: 3em;
+  }
+  
+  .avatar {
+    font-size: 2em;
+    position: relative;
+  }
+  
+  .avatar__figure {
+    width: 1em;
+    height: 0;
+    padding-bottom: 1em;
+    border-radius: 50%; // avatar border-radius
+    overflow: hidden;
+  }
+  
+  .avatar__img, .avatar__placeholder {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 1em;
+    height: 1em;
+    border-radius: inherit;
+  }
+
+  p{
+  size:100px;
+  color: blue;
+  }
+  
+  .avatar__placeholder {
+    background-color: var(--color-contrast-low); // icon background color
+    color: var(--color-bg); // icon stroke color
+    fill: transparent; // icon fill color
+  }
+  
+  .avatar--btn {
+    @include reset;
+    cursor: pointer;
+  }
+  
+  // sizes
+  .avatar--sm {
+    font-size: var(--avatar-sm);
+  }
+  
+  .avatar--md {
+    font-size: var(--avatar-md);
+  }
+  
+  .avatar--lg {
+    font-size: var(--avatar-lg);
+  }
+  
+  // status
+  .avatar__status {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: inline-block;
+    width: 0.2em;
+    height: 0.2em;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px var(--color-bg);
+    background-color: var(--color-contrast-medium);
+  }
+  
+  .avatar__status--active {
+    background-color: var(--color-success);
+  }
+  
+  .avatar__status--busy {
+    background-color: var(--color-error);
+  }
+  
+  .avatar__initials, .avatar__users-counter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1em;
+    height: 1em;
+    border-radius: inherit;
+    background-color: var(--color-contrast-lower);
+    color: var(--color-contrast-higher);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .avatar__initials { // initials - show letters if you don't have img
+    text-align: center;
+  
+    span {
+      font-size: 0.5em;
+    }
+  }
+  
+  .avatar__users-counter { // tot number of users in a group of avatars
+    span {
+      font-size: 0.42em;
+    }
+  }
+  
+  // group
+  .avatar-group {
+    display: flex;
+    // font-size: 1.75em; // optional -> edit the size of all the avatars in the group
+  
+    .avatar {
+      margin-left: -0.1em;
+
+    }
+  
+    .avatar__figure {
+      box-shadow: 0 0 0 3px var(--color-bg);
+    }
+  }
+
+  .login{
+    padding-left: 10px;
+    color: dodgerblue;
+  }
